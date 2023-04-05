@@ -13,16 +13,12 @@ class Cuentabancaria:
     def depositar(self, numero_de_cuenta, valor_a_depositar):
         if self.numero_de_cuenta == numero_de_cuenta:
             self.saldo += valor_a_depositar 
-            print("Operación realizada exitosamente") 
-        else:
-            print("Su dinero fue consigando a una cuenta bancaria diferente")
         
     def retirar(self, password, valor_a_retirar):
-        if self.password == password:
-            self.saldo -= valor_a_retirar
-            print("Operación realizada exitosamente")
+        if self.password != password:
+            raise Exception("Contraseña incorrecta")
         else:
-            print("Operación declinada")
+            self.saldo -= valor_a_retirar
         
 cuenta_1 = Cuentabancaria(987654321, 5000000, "Isabela", "Isa123")
 cuenta_1.depositar(987654321, 300000)
@@ -31,10 +27,16 @@ print(cuenta_1.saldo)
 cuenta_1.depositar(887654321, 300000)
 print(cuenta_1.saldo)
 
-cuenta_1.retirar("Isa123", 1000000)
+try:
+    cuenta_1.retirar("Isa123", 1000000)
+except Exception:
+    print("Operación declinada, contraseña inválida")
 print(cuenta_1.saldo)
 
-cuenta_1.retirar("robar", 1000000)
+try:
+    cuenta_1.retirar("robar", 1000000)
+except Exception:
+    print("Operación declinada, contraseña inválida")    
 print(cuenta_1.saldo)
 
 
