@@ -31,27 +31,27 @@ class Producto:
     
 class CarritoDeCompra:
     def __init__(self):
-        self.producto = []
+        self.productos = []
 
-    def agregar_item(self, productos):
-        if productos in self.producto:
+    def agregar_item(self, producto):
+        if producto in self.productos:
             pass
         else:
-            self.producto.append(productos)
+            self.productos.append(producto)
     
-    def eliminar_item(self, productos):
-        if productos in self.producto:
-            self.producto.remove(productos)
+    def eliminar_item(self, producto):
+        if producto in self.productos:
+            self.productos.remove(producto)
         else:
            raise Exception("El producto no se encuentra en el carrito")
     
     def obtener_items(self):
-        for i in self.producto:
+        for i in self.productos:
             print(f"{i.nombre} = {i.precio}")
 
     def obtener_total(self):
         total = 0
-        for i in self.producto:
+        for i in self.productos:
             total += i.precio
         return print(f"Total costo de los productos del carrito = {total}")
     
